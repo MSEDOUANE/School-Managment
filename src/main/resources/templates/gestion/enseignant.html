@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<head>
+</head>
+<body ng-controller="enseignantController" ng-init="init()">
+	<div layout:fragment="content">
+		<div class="content-wrapper">
+		
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-1">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="">Gestion</a></li>
+                                    <li class="breadcrumb-item active">Enseignant</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="content-body">
+
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Liste</h4>
+						<div sec:authorize="hasRole('ROLE_ADMIN')" class="heading-elements">
+							<ul class="list-inline mb-0">
+								<li><button type="button" class="btn btn-icon btn-outline-success btn-sm waves-effect waves-light" ng-click="add()"><i class="feather icon-plus"></i></button></li>
+							</ul>
+						</div>
+					</div>
+					<div class="card-content">
+						<div class="card-body card-dashboard">
+							<div class="table-responsive">
+								<table id="enseignantTable" class="table">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Nom</th>
+											<th>Prénom</th>
+											<th>Email</th>
+											<th>Téléphone</th>
+											<th>Opérations</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		
+		<!-- Modal -->
+		<div id="enseignantModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+				<div class="modal-content" style="max-height: calc(100vh - 3.5rem)">
+					<div class="modal-header">
+						<h5 class="modal-title">Formulaire</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body pt-3">
+
+						<form >
+							<input type="hidden" class="form-control square" ng-model="dto.id"> 
+							<div class="row">
+								<div class="col-md-6 col-12">
+									<fieldset class="form-label-group">
+										<input type="text" class="form-control square" placeholder="Nom" ng-model="dto.nom" tabindex="1"> 
+										<label>Nom</label>
+									</fieldset>
+									<fieldset class="form-label-group">
+										<input type="text" class="form-control square" placeholder="CIN" ng-model="dto.cin" tabindex="2"> 
+										<label>CIN</label>
+									</fieldset>
+									<fieldset class="form-label-group">
+										<input type="text" class="form-control square" placeholder="Téléphone" ng-model="dto.tel" tabindex="4"> 
+										<label>Téléphone</label>
+									</fieldset>
+									<fieldset class="form-label-group">
+										<input type="text" class="form-control square pickadate" placeholder="Date naissance" ng-model="dto.dateNaissance" tabindex="5"> 
+										<label>Date naissance</label>
+									</fieldset>
+                                	<fieldset class="form-label-group">
+										<span class="font-small-3">Homme</span> 
+										<input type="radio" name="sexe" value="H" ng-model="dto.sexe">
+										<span class="font-small-3 ml-2">Femme</span> 
+										<input type="radio" name="sexe" value="F" ng-model="dto.sexe">
+										<label>Sexe</label>
+									</fieldset>
+								</div>
+								<div class="col-md-6 col-12">
+									<fieldset class="form-label-group">
+										<input type="text" class="form-control square" placeholder="Prénom" ng-model="dto.prenom" tabindex="1"> 
+										<label>Prénom</label>
+									</fieldset>
+									<fieldset class="form-label-group">
+										<input type="text" class="form-control square" placeholder="Email" ng-model="dto.email" tabindex="3"> 
+										<label>Email</label>
+									</fieldset>
+									<fieldset class="form-label-group">
+										<textarea class="form-control square" placeholder="Adresse" rows="3" ng-model="dto.adresse" style="padding-bottom: 1.3rem;" tabindex="4"></textarea>
+										<label>Adresse</label>
+									</fieldset>
+								</div>
+							</div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary square" ng-click="save()">Enregistrer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	
+	<div layout:fragment="plugins" class="page-content">
+		<script th:src="@{/resources/static/js/gestion/enseignant.js}"></script>
+	</div>
+	
+</body>
+</html>

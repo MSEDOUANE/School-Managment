@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<head>
+</head>
+<body ng-controller="moduleController" ng-init="init()">
+	<div layout:fragment="content">
+		<div class="content-wrapper">
+		
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-1">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="">Gestion</a></li>
+                                    <li class="breadcrumb-item active">Modules</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="content-body">
+				<div class="row">
+				
+					<div class="col-lg-3 col-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Filtre</h4>
+								<div class="heading-elements visible">
+									<ul class="list-inline mb-0">
+										<li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="card-content collapse show">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-12">
+											<fieldset class="form-group">
+												<label>Filière</label> 
+												<select class="form-control square" name="filiere"
+													ng-model="filtre.filiere" required="required"
+													ng-options="i.id as i.libelle for i in filieres"></select>
+											</fieldset>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-9 col-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Liste</h4>
+								<div sec:authorize="hasRole('ROLE_ADMIN')" class="heading-elements">
+									<ul class="list-inline mb-0">
+										<li><button type="button" class="btn btn-icon btn-outline-success btn-sm waves-effect waves-light" ng-click="add()"><i class="feather icon-plus"></i></button></li>
+									</ul>
+								</div>
+							</div>
+							<div class="card-content">
+								<div class="card-body card-dashboard">
+									<div class="table-responsive">
+										<table id="moduleTable" class="table">
+											<thead>
+												<tr>
+													<th></th>
+													<th>Libelle</th>
+													<th>Nb Heures</th>
+													<th>Opérations</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+		
+		<!-- Modal -->
+		<div id="moduleModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+				<div class="modal-content" style="max-height: calc(100vh - 3.5rem)">
+					<div class="modal-header">
+						<h5 class="modal-title">Formulaire</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body pt-3">
+
+						<form >
+							<input type="hidden" class="form-control square" ng-model="dto.id"> 
+							<div class="row">
+								<div class="col-12">
+									<fieldset class="form-label-group">
+										<input type="text" class="form-control square" placeholder="libelle" ng-model="dto.libelle" > 
+										<label>Libelle</label>
+									</fieldset>
+									<fieldset class="form-label-group">
+										<input type="text" class="form-control square" placeholder="Nb Heures" ng-model="dto.nbHeures"> 
+										<label>Nb heures</label>
+									</fieldset>
+								</div>
+							</div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary square" ng-click="save()">Enregistrer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	
+	<div layout:fragment="plugins" class="page-content">
+		<script th:src="@{/resources/static/js/gestion/module.js}"></script>
+	</div>
+	
+</body>
+</html>
