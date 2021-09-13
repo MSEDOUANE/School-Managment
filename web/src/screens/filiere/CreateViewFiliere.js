@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import FiliereService from "../../api/FiliereService";
+import { Header } from "../../component/Header";
 
 export const CreateViewFiliere = (props) =>
 {
@@ -73,30 +74,33 @@ export const CreateViewFiliere = (props) =>
 
 	return (
 		<div>
-			<br></br>
-			<div className="container">
-				<div className="row">
-					<div className="card col-md-6 offset-md-3 offset-md-3">
-						{
-							getTitle(Filiere.id)
-						}
-						<div className="card-body">
-							<form>
-								<div className="form-group">
-									<label> Filiere Label: </label>
-									<input placeholder="Label" name="libelle" className="form-control"
-										value={Filiere.libelle} onChange={(e) => changeHandler(e)} disabled={disable} />
-								</div>
-								{!disable && <button className="btn btn-success" onClick={saveOrUpdateFiliere}>Save</button>}
-								<button className="btn btn-danger" onClick={() =>
-								{
-									window.history.back();
-								}} style={{ marginLeft: "10px" }}>Cancel</button>
-							</form>
+			<Header></Header>
+			<div>
+				<br></br>
+				<div className="container">
+					<div className="row">
+						<div className="card col-md-6 offset-md-3 offset-md-3">
+							{
+								getTitle(Filiere.id)
+							}
+							<div className="card-body">
+								<form>
+									<div className="form-group">
+										<label> Filiere Label: </label>
+										<input placeholder="Label" name="libelle" className="form-control"
+											value={Filiere.libelle} onChange={(e) => changeHandler(e)} disabled={disable} />
+									</div>
+									{!disable && <button className="btn btn-success" onClick={saveOrUpdateFiliere}>Save</button>}
+									<button className="btn btn-danger" onClick={() =>
+									{
+										window.history.back();
+									}} style={{ marginLeft: "10px" }}>Cancel</button>
+								</form>
+							</div>
 						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
 		</div>
 	)

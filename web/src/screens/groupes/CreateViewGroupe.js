@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import GroupeService from "../../api/GroupeService";
 import FiliereService from "../../api/FiliereService";
+import { Header } from "../../component/Header";
 
 export const CreateViewGroupe = (props) =>
 {
@@ -82,37 +83,39 @@ export const CreateViewGroupe = (props) =>
 
 	return (
 		<div>
-			<br></br>
-			<div className="container">
-				<div className="row">
-					<div className="card col-md-6 offset-md-3 offset-md-3">
-						{
-							getTitle(groupe.id)
-						}
-						<div className="card-body">
-							<form>
-								<div className="form-group">
-									<label> groupe Label: </label>
-									<input placeholder="Label" name="libelle" className="form-control"
-										value={groupe.libelle} onChange={(e) => changeHandler(e)} disabled={disable} />
-								</div>
-								<div className="form-group">
-									<label> filiere: </label>
-									<select name="filiereId" defaultValue={module.filiereId} disabled={disable} onChange={(e) => { changeHandler(e) }} className="form-control">
-										{filieres.map((f) => <option value={f.id}>{f.libelle}</option>)
-										}
-									</select>
-								</div>
-								{!disable && <button className="btn btn-success" onClick={saveOrUpdateGroupe}>Save</button>}
-								<button className="btn btn-danger" onClick={() =>
-								{
-									window.history.back();
-								}} style={{ marginLeft: "10px" }}>Cancel</button>
-							</form>
+			<Header></Header>
+			<div>
+				<br></br>
+				<div className="container">
+					<div className="row">
+						<div className="card col-md-6 offset-md-3 offset-md-3">
+							{
+								getTitle(groupe.id)
+							}
+							<div className="card-body">
+								<form>
+									<div className="form-group">
+										<label> groupe Label: </label>
+										<input placeholder="Label" name="libelle" className="form-control"
+											value={groupe.libelle} onChange={(e) => changeHandler(e)} disabled={disable} />
+									</div>
+									<div className="form-group">
+										<label> filiere: </label>
+										<select name="filiereId" defaultValue={module.filiereId} disabled={disable} onChange={(e) => { changeHandler(e) }} className="form-control">
+											{filieres.map((f) => <option value={f.id}>{f.libelle}</option>)
+											}
+										</select>
+									</div>
+									{!disable && <button className="btn btn-success" onClick={saveOrUpdateGroupe}>Save</button>}
+									<button className="btn btn-danger" onClick={() =>
+									{
+										window.history.back();
+									}} style={{ marginLeft: "10px" }}>Cancel</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	)

@@ -11,11 +11,12 @@ import Card from 'react-bootstrap/Card';
 import EnseignantService from "../../api/EnseignantService";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Header } from "../../component/Header";
 
 export function EnseignantsList(props)
 {
 	const [Enseignants, setEnseignants] = useState([]);
-	
+
 
 	const history = useHistory();
 
@@ -27,7 +28,7 @@ export function EnseignantsList(props)
 			setEnseignants(r.data);
 		})
 
-	})
+	}, [])
 
 	function viewEnseignant(id, props)
 	{
@@ -48,6 +49,8 @@ export function EnseignantsList(props)
 		history.push('/add-Enseignant/_add');
 	}
 	return (
+		<div>
+		<Header></Header>
 		<div className="container">
 			<h2 className="text-center">Enseignants List</h2>
 			<div className="row">
@@ -102,6 +105,7 @@ export function EnseignantsList(props)
 
 			</div>
 
+		</div>
 		</div>
 	);
 }

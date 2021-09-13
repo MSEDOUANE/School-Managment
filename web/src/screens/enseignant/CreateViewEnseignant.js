@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import EnseignantService from "../../api/EnseignantService";
+import { Header } from "../../component/Header";
 
 export const CreateViewEnseignant = (props) =>
 {
@@ -84,12 +85,13 @@ export const CreateViewEnseignant = (props) =>
 
 	return (
 		<div>
-			<br></br>
+
+			<Header></Header>
 			<div className="container">
 				<div className="row">
 					<div className="card col-md-6 offset-md-3 offset-md-3">
 						{
-							getTitle(Enseignant.id)
+							getTitle(Enseignant.page)
 						}
 						<div className="card-body">
 							<form>

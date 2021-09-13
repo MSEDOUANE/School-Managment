@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import ModuleService from "../../api/ModuleService";
 import FiliereService from "../../api/FiliereService";
+import { Header } from "../../component/Header";
 
 export const CreateViewModule = (props) =>
 {
@@ -82,6 +83,7 @@ export const CreateViewModule = (props) =>
 
 	return (
 		<div>
+			<Header></Header>
 			<br></br>
 			<div className="container">
 				<div className="row">

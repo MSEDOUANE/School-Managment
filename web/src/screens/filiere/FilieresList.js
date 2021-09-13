@@ -11,6 +11,7 @@ import Card from 'react-bootstrap/Card';
 import FiliereService from "../../api/FiliereService";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Header } from "../../component/Header";
 
 export function FilieresList(props)
 {
@@ -26,7 +27,7 @@ export function FilieresList(props)
 			setFilieres(r.data);
 		})
 
-	})
+	},[])
 
 	function viewFiliere(id, props)
 	{
@@ -47,6 +48,8 @@ export function FilieresList(props)
 		history.push('/add-Filiere/_add');
 	}
 	return (
+		<div>
+		<Header></Header>
 		<div className="container">
 			<h2 className="text-center">Filieres List</h2>
 			<div className="row">
@@ -87,6 +90,7 @@ export function FilieresList(props)
 
 			</div>
 
+		</div>
 		</div>
 	);
 }

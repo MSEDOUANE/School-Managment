@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import StudentService from "../../api/StudentService";
+import { Header } from "../../component/Header";
 
 export const CreateViewStudent = (props) =>
 {
@@ -86,12 +87,13 @@ export const CreateViewStudent = (props) =>
 
 	return (
 		<div>
+			<Header></Header>
 			<br></br>
 			<div className="container">
 				<div className="row">
 					<div className="card col-md-6 offset-md-3 offset-md-3">
 						{
-							getTitle(Student.id)
+							getTitle(Student.page)
 						}
 						<div className="card-body">
 							<form>

@@ -20,14 +20,14 @@ class StudentService
         return axios.get(Student_API_BASE_URL + '/load/' + StudentId);
     }
 
-    updateStudent(Student, StudentId)
+    updateStudent(Student)
     {
-        return axios.put(Student_API_BASE_URL + '/' + StudentId, Student);
+        return axios.post(Student_API_BASE_URL + '/save/', Student);
     }
 
     deleteStudent(StudentId)
     {
-        return axios.delete(Student_API_BASE_URL + '/delete/' + StudentId);
+        return axios.get(Student_API_BASE_URL + '/delete/' + StudentId);
     }
 }
 
